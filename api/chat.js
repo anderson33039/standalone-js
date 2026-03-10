@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   // 3. YOUR EXISTING LOGIC
   const apiKey = process.env.AI_API_KEY;
   // Using gemini-2.0-flash or gemini-1.5-flash (stable)
-  const model = "gemini-2.5-flash"; 
+  const model = "gemini-3.1-flash-lite-preview"; 
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
   try {
