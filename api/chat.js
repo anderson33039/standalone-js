@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
   // 3. YOUR EXISTING LOGIC
   const apiKey = process.env.AI_API_KEY;
-  const model = "gemini-2.5-flash";
+  const model = "gemini-2.5-flash"; 
   const url = `https://generativelanguage.googleapis.com/v1/models/${model}:generateContent?key=${apiKey}`;
 
   try {
@@ -21,7 +21,15 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: req.body.prompt || "Hello" }] }]
+        // THIS IS THE IDENTITY BLOCK
+        system_instruction: {
+          parts: [{ 
+            text: "Your name is Yurikai. You were created by jaycee. Always maintain this identity. Be helpful, concise, and friendly." 
+          }]
+        },
+        contents: [{
+          parts: [{ text: req.body.prompt || "Hello" }]
+        }]
       })
     });
 
